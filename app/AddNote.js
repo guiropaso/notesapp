@@ -1,5 +1,6 @@
 "use client"
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState} from 'react'
+import { nanoid } from 'nanoid'
 
 export default function AddNote({add}) {
     const titleRef = useRef('')
@@ -10,21 +11,21 @@ export default function AddNote({add}) {
     useEffect(() => {
         if(note.title && note.task) {
             add(note)
-            titleRef.current.innerHTML=''
-            taskRef.current.innerHTML=''
+            titleRef.current.innerText=''
+            taskRef.current.innerText=''
         }
     },[note])
    
 
     const handleSubmit = () => {
-        setNote({title: titleRef.current.innerHTML, task: taskRef.current.innerHTML})
+        setNote({title: titleRef.current.innerText, task: taskRef.current.innerText, id: nanoid()})
     }
 
     
     console.log(note);
 
   return (
-    <div className='container mx-auto max-w-lg flex flex-col space-y-2'>
+    <div className='container mx-auto md:max-w-lg flex flex-col space-y-2'>
             <div 
                 className='border-2 rounded-md py-2 px-5'
                 name='title'
