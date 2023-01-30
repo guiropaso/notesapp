@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  background-color: #282C34;
+}
+
+
 .my-masonry-grid {
     display: flex;
     margin-left: -30px; /* gutter size offset */
@@ -18,7 +23,8 @@
     margin-bottom: 30px;
   }
 
-  header {
-    grid-template-columns: 150px 1fr;
-    place-items: center;
-  }
+ #wraper {
+  display: grid;
+  grid-template-columns: 50px 1fr;
+ }
+
