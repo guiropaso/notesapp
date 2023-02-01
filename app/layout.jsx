@@ -1,53 +1,41 @@
 "use client"
 import { useState } from 'react';
 import Link from 'next/link';
-import { Drawer, Box, IconButton} from '@mui/material'
-import {makeStyles} from 'tss-react/mui'
-import MenuIcon from '@mui/icons-material/Menu'
 import './globals.css'
+import {MdMenu} from 'react-icons/md'
 
-
-const useStyles = makeStyles()((theme) => {
-  return {
-    drawer: {
-    },
-    drawerPaper: {
-      background: '#f8fafc'
-    }
-  }
-})
 
 export default function RootLayout({ children }) {
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false)
-  const {classes} = useStyles()
 
   return (
     <html lang="en">
       <head />
       <body>
-        <div id='wraper' className='p-10'>
-          <div>
-            <IconButton edge='start' color='inherit' aria-label='logo' onClick={() => setIsDrawerOpen(true) }>
-              <MenuIcon className='text-4xl text-neutral-50' />
-            </IconButton>
-          </div>
-          {children}
+      <div className="drawer">
+      <input id="my-drawer" type="checkbox" className="drawer-toggle" />
+      <div className="drawer-content">
+        <div className="flex flex-row space-x-4 mt-5 mb-5">
+          <label htmlFor="my-drawer" className="btn btn-square drawer-button ml-10">
+            <MdMenu className='text-3xl'/>
+          </label>
         </div>
-          <Drawer
-          anchor='left'
-          open={isDrawerOpen}
-          onClose={() => setIsDrawerOpen(false)}
-          className={classes.drawer}
-          classes={{paper: classes.drawerPaper}}
-          >
-            <Box p={2} width='300px' textAlign='center' >
-              <h2 className='text-3xl mb-20 text-stone-600'>Resources</h2>
-              <div className='flex flex-col space-y-4 text-xl text-sky-600'>
-                  <Link href='/'>Notes App</Link>
-                  <Link href='pomodoro'>Pomodoro Timer</Link>
-              </div>
-            </Box>
-          </Drawer>
+        {children}
+      </div>
+      <div className="drawer-side">
+        <label htmlFor="my-drawer" className="drawer-overlay"></label>
+        <div className="menu p-4 w-80 bg-base-100 text-base-content">
+          <h3 className="text-3xl mb-10 font-semibold">Links</h3>
+          <div className="flex flex-col space-y-5 text-lg font-medium text-slate-500">
+            <Link className="hover:text-blue-500" href="/">
+              Notes App
+            </Link>
+            <Link className="hover:text-blue-500" href="pomodoro">
+              Pomodoro Timer
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
       </body>
     </html>
   )

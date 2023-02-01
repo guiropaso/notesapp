@@ -1,13 +1,22 @@
 "use client"
 import React, { useState } from 'react'
 import AddNote from './AddNote'
+import Masonry from 'react-masonry-css'
 
 import Collection from './Collection'
-import {Masonry} from '@mui/lab'
 
 
 export default function Index() {
   const [notes, setNotes] = useState([])
+
+  const breakpointColumnsObj = {
+    default: 5,
+    1536: 5,
+    1200: 4,
+    900: 3,
+    600: 2,
+    340: 1
+  };
 
   
   const handleAdd = (newNote) => {
@@ -22,11 +31,12 @@ export default function Index() {
 
   console.log('Notes Array:', notes)
   return (
-    <div className='text-center'>
-      <h2 className='text-3xl mb-10 text-neutral-50' >Notes App</h2>
-
+    <div>
       <AddNote add={handleAdd}/>
-      <Masonry className='container mx-auto' columns={[1,2,3,4,5]} spacing={1}>
+      <Masonry
+        breakpointCols={breakpointColumnsObj}
+        className="my-masonry-grid mt-40"
+        columnClassName="my-masonry-grid_column">
         {notes.map((el, index) => <Collection key={index} element={el} onEdit={handleEdit} />)}
       </Masonry>
     </div>

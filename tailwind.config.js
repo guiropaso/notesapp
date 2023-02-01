@@ -11,7 +11,11 @@ module.exports = {
       'md': '900px',
       'lg': '1200px',
       'xl': '1536px',},
-    extend: {},
+    extend: {
+      colors: {
+        baseColor: '#282C34',
+      },
+    },
   },
-  plugins: [],
+  plugins: [require("daisyui")],
 }
