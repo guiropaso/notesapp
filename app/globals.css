@@ -21,5 +21,22 @@ body {
   margin-bottom: 10px;
 }
 
+.activities--button-active {
+  background-color: rgba(15, 23, 42,0.4);
+}
 
+.toggleButtons--startButton {
+  width: 200px;
+}
+
+.toggleButtons--skipDiv {
+  display: inline-block;
+  height: 80px;
+  width: calc((100% - 200px) / 2);
+}
+
+
+.toggleButtons--skipIcon {
+  font-size: 3rem;
+}
 

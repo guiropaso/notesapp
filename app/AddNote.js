@@ -19,13 +19,16 @@ export default function AddNote({add}) {
     },[note])
 
     useEffect(() => {
+
+        const controller = new AbortController()
+
         function onClickOutside(ele, cb) {
             document.addEventListener('click', event => {
                 if(!ele.contains(event.target)) cb()
-            })
+            },{signal: controller.signal})
         }
-    
-        onClickOutside(divRef.current, () => {
+
+        function clickListener() {
             if(titleRef.current.innerText !== '' && taskRef.current.innerText !== '') {
                 handleSubmit()
             }
@@ -33,7 +36,14 @@ export default function AddNote({add}) {
                 titleRef.current.classList.add('hidden')
                 taskRef.current.innerText='Take a note...'
             }
+        }
+    
+        onClickOutside(divRef.current, clickListener)
+
+        return(() => {
+            controller.abort()
         })
+
     },[])
 
     const handleClick = () => {
