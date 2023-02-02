@@ -48,14 +48,14 @@ export default function Pomodoro() {
   },[currentActivity])
 
  
-useEffect(() => {
-  let intervalo
-  if(!isRunning) {
-    intervalo = setInterval(() => {
-      setRemainingTime(prevState => prevState - 1)
-    },1000)
-  }
-},[isRunning])
+// useEffect(() => {
+//   let intervalo
+//   if(!isRunning) {
+//     intervalo = setInterval(() => {
+//       setRemainingTime(prevState => prevState - 1)
+//     },1000)
+//   }
+// },[isRunning])
 
 
 
